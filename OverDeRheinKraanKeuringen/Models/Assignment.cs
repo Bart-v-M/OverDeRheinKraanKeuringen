@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OverDeRheinKraanKeuringen.Models
 {
-    public class AssignmentModel
+    public class Assignment
     {
         public int Id { get; set; }
 
@@ -27,6 +27,6 @@ namespace OverDeRheinKraanKeuringen.Models
 
         public string Reason { get; set; }
 
-        public List<CableChecklistModel> cableChecklists { get; set; }
+        public List<CableChecklist> cableChecklists { get; set; }
     }
 }

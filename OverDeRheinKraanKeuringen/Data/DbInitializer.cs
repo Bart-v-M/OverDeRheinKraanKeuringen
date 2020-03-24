@@ -30,23 +30,23 @@ namespace OverDeRheinKraanKeuringen.Data
 
             context.SaveChanges();
 
-            var cableCheckLists = new List<CableChecklistModel>
+            var cableCheckLists = new List<CableChecklist>
             {
-                new CableChecklistModel { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes  }
+                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes  }
             };
 
-            foreach (CableChecklistModel c in cableCheckLists)
+            foreach (CableChecklist c in cableCheckLists)
             {
                 context.cableCheckLists.Add(c);
             }
 
             context.SaveChanges();
 
-            var assignments = new List<AssignmentModel>
+            var assignments = new List<Assignment>
             {
-                new AssignmentModel{ Date = DateTime.Now,Observations = "Heel Mooi", CableSupplier = "Apeldoorn"}
+                new Assignment{ Date = DateTime.Now,Observations = "Heel Mooi", CableSupplier = "Apeldoorn"}
             };
-            foreach (AssignmentModel s in assignments)
+            foreach (Assignment s in assignments)
             {
                 context.Assignments.Add(s);
             }

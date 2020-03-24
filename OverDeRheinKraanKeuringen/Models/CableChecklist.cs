@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OverDeRheinKraanKeuringen.Models
 {
-    public class CableChecklistModel
+    public class CableChecklist
     {
         public int Id { get; set; }
 

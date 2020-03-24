@@ -1,14 +1,52 @@
-﻿@model List<OverDeRheinKraanKeuringen.Models.AssignmentModel>
+﻿@model IEnumerable<OverDeRheinKraanKeuringen.Models.Assignment>
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-
-    <div id="accordion">
-        @foreach (AssignmentModel assignmentModel in Model)
+<br />
+<h2>Opdrachten</h2>
+<br />
+<form>
+    <button formaction="/Assignments/Create">Nieuwe opdracht</button>
+</form>
+<br />
+<div class="bs-example">
+    <div class="panel-group" id="accordionY">
+        @if (Model != null)
         {
-            @*TODO Meegeven assignment aan partial*@
-            <partial name="_AssignmentPartial" data="@assignmentModel" />
+            int i = 1;
+            foreach (var item in Model)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordionY" href="#collapse_@i">@i How do I activate my account?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse_@i" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>The instructions to activate your account will be sent to your email once you have submitted the registration form. If you did not receive this email, your email service provider’s mailing software may be blocking it. You can try checking your junk / spam folder or contact us at <a href="#">help@samplestore.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                i++;
+            }
+        }
+        else
+        {
+            <p>Er zijn op dit moment geen opdrachten ingevoerd</p>
         }
     </div>
+</div>
+
+
+<!--
+<div id="accordion">
+    @*foreach (AssignmentModel assignmentModel in Model)
+    {
+        @*TODO Meegeven assignment aan partial
+        <partial name="_AssignmentPartial" data="@assignmentModel" />
+    }*@
+</div>
+-->
