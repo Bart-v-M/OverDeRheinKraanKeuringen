@@ -1,3 +1,14 @@
-﻿@{
+﻿@model List<OverDeRheinKraanKeuringen.Models.AssignmentModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
+
+
+    <div id="accordion">
+        @foreach (AssignmentModel assignmentModel in Model)
+        {
+            @*TODO Meegeven assignment aan partial*@
+            <partial name="_AssignmentPartial" data="@assignmentModel" />
+        }
+    </div>

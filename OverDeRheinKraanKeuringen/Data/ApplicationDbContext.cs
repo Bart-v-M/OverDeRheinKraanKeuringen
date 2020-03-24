@@ -18,5 +18,8 @@ namespace OverDeRheinKraanKeuringen.Data
         public DbSet<OverDeRheinKraanKeuringen.Models.CableChecklistModel> cableCheckLists { get; set; }
         
         public DbSet<OverDeRheinKraanKeuringen.Models.DamageType> damageTypes { get; set; }
+
+
+        
     }
 }
