@@ -19,7 +19,5 @@ namespace OverDeRheinKraanKeuringen.Data
         
         public DbSet<OverDeRheinKraanKeuringen.Models.DamageType> damageTypes { get; set; }
 
-
-        
     }
 }

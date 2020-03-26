@@ -8,8 +8,8 @@ namespace OverDeRheinKraanKeuringen.ViewModels
 {
     public class AssignmentViewModel
     {
-        public Assignment AssignmentModel { get; set; }
-
+        public Assignment Assignment { get; set; }
+   
         public List<CableChecklist> CableChecklists { get; set; }
     }
 }

@@ -1,10 +1,179 @@
-﻿@model Assignment
+﻿@model OverDeRheinKraanKeuringen.Models.Assignment
+
+<h4>Kabelchecklists</h4>
+<br />
+<form>
+    <button class="btn-success" asp-controller="CableChecklists" asp-action="Create">Nieuwe checklist</button>
+</form>
+<br />
+<br />
+<div>
+    @if (Model.cableChecklists.Count() != 0)
+    {
+        foreach (var cableChecklist in Model.cableChecklists)
+        {
+            int i = cableChecklist.Id;
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordionX" href="#collapse_@i">@i</a>
+                    </h4>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Er zijn op dit moment nog geen kabelchecklists ingevoerd</p>
+    }
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+    <div>
+
+
+        @for (int i = 0; i.cableChecklists.Count(); i++)
+        {
+
+        }
+
+
+        @if (Model != null)
+        {
+            foreach (var cableChecklist in Model)
+            {
+                int i = cableChecklist.Id;
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordionX" href="#collapse_@i">@i</a>
+                        </h4>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Er zijn op dit moment nog geen kabelchecklists ingevoerd</p>
+        }
+
+    </div>
+*@
+
+
+
+@*<table class="my-table">
+
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Topics.FirstOrDefault().Topic.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topics.FirstOrDefault().Topic.Niveau)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topics.FirstOrDefault().Topic.Naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topics.FirstOrDefault().Topic.Duur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topics.FirstOrDefault().Topic.Werkvorm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topics.FirstOrDefault().Topic.Certificeringen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topics.FirstOrDefault().TopicVoortgang)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var topic in Model.)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => topic.Topic.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => topic.Topic.Niveau.Naam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => topic.Topic.Naam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => topic.Topic.Duur.Eenheid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => topic.Topic.Werkvorm.Naam)
+                </td>
+                <td>
+                    @foreach (var cert in topic.Topic.Certificeringen)
+                    {
+                        @Html.DisplayFor(modelItem => cert.Naam)
+                    }
+                </td>
+                <td>
+
+                    @Html.DropDownListFor(modelItem => topic.TopicVoortgang, new SelectList(Enum.GetValues(typeof(StudentenVolgSysteem.Models.Voortgang))), new { htmlAttributes = new { @class = "form-control" } })
+
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Topics", new { id = topic.TopicId, returnUrl = this.Request.RawUrl }, null)
+                </td>
+            </tr>
+        }
+    </table>*@
+
+
+
+
+
+
+@*
+
+    @if (Model != null)
+    {
+        foreach (var cableChecklist in Model)
+        {
+            int i = cableChecklist.Id;
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordionX" href="#collapse_@i">@i</a>
+                    </h4>
+                </div>
+            </div>
+        }
+
+*@
+
+
+
 
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
 
+<!--
 <div class="card">
     <div class="card-header" id="headingOne">
         <h5 class="mb-0">
@@ -16,7 +185,58 @@
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
         <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            <p>Hey there!</p>
         </div>
     </div>
 </div>
+-->
+@*
+    @model List<OverDeRheinKraanKeuringen.Models.Assignment>
+
+    @{
+        ViewData["Title"] = "Home Page";
+    }
+
+    <br />
+    <h2>Opdrachten</h2>
+    <br />
+    <form>
+        <button formaction="/Assignments/Create">Nieuwe opdracht</button>
+    </form>
+    <br />
+    <br />
+    @<div class="bs-example">
+        <div class="panel-group" id="accordionY">
+            @
+        <ejs-accordion id="defaultAccordion" expandMode="Single">
+            <e-accordion-accordionitems>
+                @if (Model != null)
+                {
+                    //int i = 1;
+                    foreach (var assigment in Model)
+                    {
+                        <partial name="_AssignmentPartial" for="@assigment" />
+                    }
+                }
+                else
+                {
+                    <p>Er zijn op dit moment geen opdrachten ingevoerd</p>
+                }
+                @* <e-accordion-accordionitem header="JavaScript" content="JavaScript (JS) is an interpreted computer programming language.It was originally implemented as part of web browsers so that client-side scripts could interact with the user, control the browser, communicate asynchronously, and alter the document content that was displayed.More recently, however, it has become common in both game development and the creation of desktop applications."></e-accordion-accordionitem>@
+
+                        </e-accordion-accordionitems>
+                    </ejs-accordion>
+                    @</div>
+                        </div>@
+
+
+                    <!--
+                    <div id="accordion">
+                        @foreach (AssignmentModel assignmentModel in Model)
+                        {
+                            @TODO Meegeven assignment aan partial
+
+                        }@
+                    </div>
+                    -->
+*@

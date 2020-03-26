@@ -10,23 +10,22 @@ using OverDeRheinKraanKeuringen.Models;
 
 namespace OverDeRheinKraanKeuringen.Controllers
 {
-    public class AssignmentsController : Controller
+    public class CableChecklistsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public AssignmentsController(ApplicationDbContext context)
+        public CableChecklistsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Assignments
+        // GET: CableChecklists
         public async Task<IActionResult> Index()
         {
-            var x = await _context.Assignments.Include(m => m.cableChecklists).ToListAsync();
-            return View(x);
+            return View(await _context.cableCheckLists.ToListAsync());
         }
 
-        // GET: Assignments/Details/5
+        // GET: CableChecklists/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +33,39 @@ namespace OverDeRheinKraanKeuringen.Controllers
                 return NotFound();
             }
 
-            var assignment = await _context.Assignments
+            var cableChecklist = await _context.cableCheckLists
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (assignment == null)
+            if (cableChecklist == null)
             {
                 return NotFound();
             }
 
-            return View(assignment);
+            return View(cableChecklist);
         }
 
-        // GET: Assignments/Create
+        // GET: CableChecklists/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Assignments/Create
+        // POST: CableChecklists/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,WorkInstruction,Date,CableSupplier,Observations,Signature,OperatingHours,Reason")] Assignment assignment)
+        public async Task<IActionResult> Create([Bind("Id,Breakage_6D,Breakage_30D,DamageOutside,DamageCorrosion,ReducedCableDiameter,PositionMeasuringPoints,DamageTotal")] CableChecklist cableChecklist)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(assignment);
+                _context.Add(cableChecklist);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(assignment);
+            return View(cableChecklist);
         }
 
-        // GET: Assignments/Edit/5
+        // GET: CableChecklists/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +73,22 @@ namespace OverDeRheinKraanKeuringen.Controllers
                 return NotFound();
             }
 
-            var assignment = await _context.Assignments.FindAsync(id);
-            if (assignment == null)
+            var cableChecklist = await _context.cableCheckLists.FindAsync(id);
+            if (cableChecklist == null)
             {
                 return NotFound();
             }
-            return View(assignment);
+            return View(cableChecklist);
         }
 
-        // POST: Assignments/Edit/5
+        // POST: CableChecklists/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,WorkInstruction,Date,CableSupplier,Observations,Signature,OperatingHours,Reason")] Assignment assignment)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Breakage_6D,Breakage_30D,DamageOutside,DamageCorrosion,ReducedCableDiameter,PositionMeasuringPoints,DamageTotal")] CableChecklist cableChecklist)
         {
-            if (id != assignment.Id)
+            if (id != cableChecklist.Id)
             {
                 return NotFound();
             }
@@ -98,12 +97,12 @@ namespace OverDeRheinKraanKeuringen.Controllers
             {
                 try
                 {
-                    _context.Update(assignment);
+                    _context.Update(cableChecklist);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AssignmentExists(assignment.Id))
+                    if (!CableChecklistExists(cableChecklist.Id))
                     {
                         return NotFound();
                     }
@@ -114,10 +113,10 @@ namespace OverDeRheinKraanKeuringen.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(assignment);
+            return View(cableChecklist);
         }
 
-        // GET: Assignments/Delete/5
+        // GET: CableChecklists/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,30 +124,30 @@ namespace OverDeRheinKraanKeuringen.Controllers
                 return NotFound();
             }
 
-            var assignment = await _context.Assignments
+            var cableChecklist = await _context.cableCheckLists
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (assignment == null)
+            if (cableChecklist == null)
             {
                 return NotFound();
             }
 
-            return View(assignment);
+            return View(cableChecklist);
         }
 
-        // POST: Assignments/Delete/5
+        // POST: CableChecklists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var assignment = await _context.Assignments.FindAsync(id);
-            _context.Assignments.Remove(assignment);
+            var cableChecklist = await _context.cableCheckLists.FindAsync(id);
+            _context.cableCheckLists.Remove(cableChecklist);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AssignmentExists(int id)
+        private bool CableChecklistExists(int id)
         {
-            return _context.Assignments.Any(e => e.Id == id);
+            return _context.cableCheckLists.Any(e => e.Id == id);
         }
     }
 }

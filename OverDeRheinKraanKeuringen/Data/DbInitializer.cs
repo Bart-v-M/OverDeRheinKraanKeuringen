@@ -10,6 +10,8 @@ namespace OverDeRheinKraanKeuringen.Data
     {
         public static void Initialize(ApplicationDbContext context)
         {
+            context.Database.EnsureDeleted(); 
+            
             context.Database.EnsureCreated();
 
             // Look for any students.
@@ -32,6 +34,9 @@ namespace OverDeRheinKraanKeuringen.Data
 
             var cableCheckLists = new List<CableChecklist>
             {
+                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes  },
+                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes  },
+                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes  },
                 new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes  }
             };
 
@@ -44,7 +49,7 @@ namespace OverDeRheinKraanKeuringen.Data
 
             var assignments = new List<Assignment>
             {
-                new Assignment{ Date = DateTime.Now,Observations = "Heel Mooi", CableSupplier = "Apeldoorn"}
+                new Assignment{ Date = DateTime.Now,Observations = "Heel Mooi", CableSupplier = "Apeldoorn", cableChecklists = context.cableCheckLists.ToList()}
             };
             foreach (Assignment s in assignments)
             {
