@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OverDeRheinKraanKeuringen.Models.Assignment>
+﻿@model List<OverDeRheinKraanKeuringen.Models.Assignment>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -12,35 +12,28 @@
 </form>
 <br />
 <br />
-<div class="bs-example">
-    <div class="panel-group" id="accordionY">
+@*<div class="bs-example">
+    <div class="panel-group" id="accordionY">*@
+<ejs-accordion id="defaultAccordion" expandMode="Single">
+    <e-accordion-accordionitems>
         @if (Model != null)
         {
             //int i = 1;
             foreach (var assigment in Model)
             {
-                int i = assigment.Id;
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordionY" href="#collapse_@i">@i</a>
-                        </h4>
-                    </div>
-                    <div id="collapse_@i" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <p>The instructions to activate your account will be sent to your email once you have submitted the registration form. If you did not receive this email, your email service provider’s mailing software may be blocking it. You can try checking your junk / spam folder or contact us at <a href="#">help@samplestore.com</a></p>
-                        </div>
-                    </div>
-                </div>
-                //i++;
+                <partial name="_AssignmentPartial" for="@assigment" />
             }
         }
         else
         {
             <p>Er zijn op dit moment geen opdrachten ingevoerd</p>
         }
-    </div>
-</div>
+      @* <e-accordion-accordionitem header="JavaScript" content="JavaScript (JS) is an interpreted computer programming language.It was originally implemented as part of web browsers so that client-side scripts could interact with the user, control the browser, communicate asynchronously, and alter the document content that was displayed.More recently, however, it has become common in both game development and the creation of desktop applications."></e-accordion-accordionitem>*@
+
+    </e-accordion-accordionitems>
+</ejs-accordion>
+@*</div>
+    </div>*@
 
 
 <!--
@@ -48,8 +41,7 @@
     @*foreach (AssignmentModel assignmentModel in Model)
     {
         @*TODO Meegeven assignment aan partial
-        <partial name="_AssignmentPartial" data="@assignmentModel" />
+
     }*@
 </div>
 -->
-

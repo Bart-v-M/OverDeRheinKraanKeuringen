@@ -54,6 +54,12 @@
         </dd>
     </dl>
 </div>
+@if (Model.Signature != null)
+{
+    <div class="Image" style="float:right; ">
+        <img style="height:auto;width:200px" id="Image" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.Signature))" />
+    </div>
+}
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>

@@ -52,7 +52,12 @@
                 @Html.DisplayFor(modelItem => item.Observations)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Signature)
+                @if (item.Signature != null)
+                {
+                    <div class="Image" style="float:right; ">
+                        <img style="height:auto;width:200px" id="Image" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(item.Signature))" />
+                    </div>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OperatingHours)
