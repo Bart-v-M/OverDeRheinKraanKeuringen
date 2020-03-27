@@ -57,52 +57,20 @@
                     }
                 </td>
                 <td>
-                    <button class="btn-primary" asp-action="Details" asp-route-id="@item.Id">Toon details</button>
-                    <button style="margin-left:10px" class="btn-danger" asp-action="Delete" asp-route-id="@item.Id">Verwijder</button>
+                    <form>
+                        <button class="btn-primary" asp-action="Details" asp-route-id=@item.Id.ToString()>Toon details</button>
+                        <button style="margin-left:10px" class="btn-danger" asp-action="Delete" asp-route-id=@item.Id.ToString()>Verwijder</button>
+                    </form>       
                 </td>
             </tr>
 
             <tr>
                 <td id="collapse_@i" class="panel-collapse collapse">
                     <div class="panel-body">
-                        @*await Html.PartialAsync("~/Views/Shared/_AssignmentPartial.cshtml", item)*@
-
                         <partial name="~/Views/Shared/_AssignmentPartial.cshtml" model=item>
-                            @*<partial name="~/Views/Shared/_AssignmentPartial.cshtml" data="i" />*@
                     </div>
                 </td>
             </tr>
-
-
-            @*
-                <!--
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <table>
-                            <tr>
-                                <th>
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordionY" href="#collapse_@i">Opdrachtnr. @i</a>
-                                    </h4>
-                                </th>
-                                <th>
-                                    <h4 style="margin-left:20px">@assignment.Date</h4>
-                                </th>
-                                <th>
-                                    <h4 style="margin-left:20px">Hello There!</h4>
-                                </th>
-                            </tr>
-                        </table>
-                    </div>
-                    <div id="collapse_@i" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <partial name="~/Views/Shared/_AssignmentPartial.cshtml" />
-                        </div>
-                    </div>
-                </div>
-                -->
-            *@
-
         }
     </tbody>
 </table>

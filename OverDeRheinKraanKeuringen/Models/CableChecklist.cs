@@ -24,7 +24,7 @@ namespace OverDeRheinKraanKeuringen.Models
 
         public DamageLevel DamageTotal { get; set; }
   
-        public virtual List<DamageType> DamageTypes { get; set; }
+        public List<DamageType> DamageTypes { get; set; }
     }
 
     public enum DamageLevel
@@ -33,21 +33,5 @@ namespace OverDeRheinKraanKeuringen.Models
         Average,
         High,
         VeryHigh
-    }
-
-    public enum Type
-    {
-        H2O_Corrosion,
-        Pinched,
-        ScrapingDamage,
-        MetalFatigue,
-        AcidCorrosion
-    }
-
-    public class DamageType
-    {
-        public int Id { get; set; }
-
-        public Type Type { get; set; }
     }
 }

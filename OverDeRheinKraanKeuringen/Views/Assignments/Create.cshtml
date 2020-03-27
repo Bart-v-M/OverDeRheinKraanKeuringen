@@ -45,28 +45,22 @@
             </div>
             <div class="form-group">
                 <canvas width="500" height="400" id="signature"
-                        style="border:1px solid black"></canvas><br>
-                <button type="button" id="accept"
-                        class="btn btn-primary">
-                    Accept signature
-                </button>
-                <button type="button" id="clear"
-                        class="btn btn-primary">
-                    Clear signature
-                </button><br>
-                <img width="500" height="400" id="savetarget"
-                     style="border:1px solid black"><br>
-                <input type="text" asp-for="@Model.SignatureDataUrl">
+                        style="border:1px solid black">
+                </canvas>
+                <br />
+                <button type="button" id="clear" class="btn btn-primary">Clear signature</button>
+                <br />
+                <input type="hidden" asp-for="@Model.SignatureDataUrl">
+                <br />
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" id="accept" value="Voeg nieuwe opdracht toe" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
-
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Terug naar lijst</a>
 </div>
 
 @section Scripts {

@@ -24,12 +24,13 @@ namespace OverDeRheinKraanKeuringen.Models
 
         [NotMapped]
         public string SignatureDataUrl { get; set; }
+        
         public byte[] Signature { get; set; }
 
         public int OperatingHours { get; set; }
 
         public string Reason { get; set; }
 
-        public List<CableChecklist> cableChecklists { get; set; }
+        public List<CableChecklist> CableChecklists { get; set; }
     }
 }

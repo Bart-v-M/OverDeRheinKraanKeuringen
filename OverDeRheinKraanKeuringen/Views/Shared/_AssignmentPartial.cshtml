@@ -1,6 +1,5 @@
 ﻿@model OverDeRheinKraanKeuringen.Models.Assignment
 
-<!--Hello-->
 <h4>Kabelchecklists</h4>
 <form>
     <button class="btn-success" asp-controller="CableChecklists" asp-action="Create">Nieuwe checklist</button>
@@ -8,7 +7,7 @@
 <br />
 <br />
 <div>
-    @if (Model.cableChecklists.Count() != 0)
+    @if (Model.CableChecklists.Count() != 0)
     {
         <table class="table">
             <thead>
@@ -20,15 +19,17 @@
                 </tr>
             </thead>
             <tbody class="panel panel-default">
-                @foreach (var item in Model.cableChecklists)
+                @foreach (var item in Model.CableChecklists)
                 {
                     <tr class="panel-heading">
                         <td class="panel-title">
                             @Html.DisplayFor(modelItem => item.Id)
                         </td>
                         <td>
-                            <button class="btn-primary" asp-page="/@item.Id">Toon details</button>
-                            <button style="margin-left:10px" class="btn-danger" asp-controller="CableChecklist" asp-action="Delete" asp-route-id="@item.Id">Verwijder</button>
+                            <form>
+                                <button class="btn-primary" asp-controller="CableChecklists" asp-action="Details" asp-route-id=@item.Id.ToString()>Toon details</button>
+                                <button style="margin-left:10px" class="btn-danger" asp-controller="CableChecklists" asp-action="Delete" asp-route-id=@item.Id.ToString()>Verwijder</button>
+                            </form>
                         </td>
                     </tr>
                 }

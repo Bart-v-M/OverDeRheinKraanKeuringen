@@ -22,7 +22,7 @@ namespace OverDeRheinKraanKeuringen.Controllers
         // GET: Assignments
         public async Task<IActionResult> Index()
         {
-            var x = await _context.Assignments.Include(m => m.cableChecklists).ToListAsync();
+            var x = await _context.Assignments.Include(m => m.CableChecklists).ToListAsync();
             return View(x);
         }
 
@@ -148,7 +148,7 @@ namespace OverDeRheinKraanKeuringen.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var assignment = await _context.Assignments.FindAsync(id);
+            var assignment = await _context.Assignments.Include(m => m.CableChecklists).Where(a => a.Id == id).FirstOrDefaultAsync();
             _context.Assignments.Remove(assignment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

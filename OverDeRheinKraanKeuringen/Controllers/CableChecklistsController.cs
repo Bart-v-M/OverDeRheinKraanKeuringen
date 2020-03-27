@@ -22,7 +22,8 @@ namespace OverDeRheinKraanKeuringen.Controllers
         // GET: CableChecklists
         public async Task<IActionResult> Index()
         {
-            return View(await _context.cableCheckLists.ToListAsync());
+            var x = await _context.CableCheckLists.Include(m => m.DamageTypes).ToListAsync();
+            return View(x);
         }
 
         // GET: CableChecklists/Details/5
@@ -33,7 +34,7 @@ namespace OverDeRheinKraanKeuringen.Controllers
                 return NotFound();
             }
 
-            var cableChecklist = await _context.cableCheckLists
+            var cableChecklist = await _context.CableCheckLists
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cableChecklist == null)
             {
@@ -73,7 +74,7 @@ namespace OverDeRheinKraanKeuringen.Controllers
                 return NotFound();
             }
 
-            var cableChecklist = await _context.cableCheckLists.FindAsync(id);
+            var cableChecklist = await _context.CableCheckLists.FindAsync(id);
             if (cableChecklist == null)
             {
                 return NotFound();
@@ -124,7 +125,7 @@ namespace OverDeRheinKraanKeuringen.Controllers
                 return NotFound();
             }
 
-            var cableChecklist = await _context.cableCheckLists
+            var cableChecklist = await _context.CableCheckLists
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cableChecklist == null)
             {
@@ -139,15 +140,16 @@ namespace OverDeRheinKraanKeuringen.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cableChecklist = await _context.cableCheckLists.FindAsync(id);
-            _context.cableCheckLists.Remove(cableChecklist);
+            var cableChecklist = await _context.CableCheckLists.Include(m => m.DamageTypes).Where(a => a.Id == id).FirstOrDefaultAsync();
+            _context.CableCheckLists.Remove(cableChecklist);
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CableChecklistExists(int id)
         {
-            return _context.cableCheckLists.Any(e => e.Id == id);
+            return _context.CableCheckLists.Any(e => e.Id == id);
         }
     }
 }
