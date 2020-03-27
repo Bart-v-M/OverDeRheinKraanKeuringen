@@ -1,0 +1,71 @@
+﻿@model IEnumerable<OverDeRheinKraanKeuringen.Models.CableChecklist>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Breakage_6D)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Breakage_30D)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DamageOutside)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DamageCorrosion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReducedCableDiameter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PositionMeasuringPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DamageTotal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Breakage_6D)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Breakage_30D)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DamageOutside)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DamageCorrosion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReducedCableDiameter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PositionMeasuringPoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DamageTotal)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,63 @@
+﻿@model OverDeRheinKraanKeuringen.Models.CableChecklist
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>CableChecklist</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Breakage_6D" class="control-label"></label>
+                <input asp-for="Breakage_6D" class="form-control" />
+                <span asp-validation-for="Breakage_6D" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Breakage_30D" class="control-label"></label>
+                <input asp-for="Breakage_30D" class="form-control" />
+                <span asp-validation-for="Breakage_30D" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DamageOutside" class="control-label"></label>
+                <select asp-for="DamageOutside" class="form-control"></select>
+                <span asp-validation-for="DamageOutside" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DamageCorrosion" class="control-label"></label>
+                <select asp-for="DamageCorrosion" class="form-control"></select>
+                <span asp-validation-for="DamageCorrosion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReducedCableDiameter" class="control-label"></label>
+                <input asp-for="ReducedCableDiameter" class="form-control" />
+                <span asp-validation-for="ReducedCableDiameter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PositionMeasuringPoints" class="control-label"></label>
+                <input asp-for="PositionMeasuringPoints" class="form-control" />
+                <span asp-validation-for="PositionMeasuringPoints" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DamageTotal" class="control-label"></label>
+                <select asp-for="DamageTotal" class="form-control"></select>
+                <span asp-validation-for="DamageTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

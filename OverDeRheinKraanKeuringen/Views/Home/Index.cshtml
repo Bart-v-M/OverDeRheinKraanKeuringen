@@ -1,9 +1,14 @@
-﻿@model List<OverDeRheinKraanKeuringen.Models.Assignment>
+﻿@model IEnumerable<OverDeRheinKraanKeuringen.Models.Assignment>
+
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
+
+
+
+<!--
 <br />
 <h2>Opdrachten</h2>
 <br />
@@ -12,36 +17,54 @@
 </form>
 <br />
 <br />
-@*<div class="bs-example">
-    <div class="panel-group" id="accordionY">*@
-<ejs-accordion id="defaultAccordion" expandMode="Single">
-    <e-accordion-accordionitems>
+<div class="bs-example">
+    <div class="panel-group" id="accordionY">
         @if (Model != null)
         {
-            //int i = 1;
-            foreach (var assigment in Model)
+            @foreach (var assignment in Model)
             {
-                <partial name="_AssignmentPartial" for="@assigment" />
+                int i = assignment.Id;
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <table>
+                            <tr>
+                                <th>
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordionY" href="#collapse_@i">Opdrachtnr. @i</a>
+                                    </h4>
+                                </th>
+                                <th>
+                                    <h4 style="margin-left:20px">@assignment.Date</h4>
+                                </th>
+                                <th>
+                                    <h4 style="margin-left:20px">Hello There!</h4>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="collapse_@i" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <partial name="~/Views/Shared/_AssignmentPartial.cshtml" />
+                        </div>
+                    </div>
+                </div>
             }
         }
         else
         {
             <p>Er zijn op dit moment geen opdrachten ingevoerd</p>
         }
-      @* <e-accordion-accordionitem header="JavaScript" content="JavaScript (JS) is an interpreted computer programming language.It was originally implemented as part of web browsers so that client-side scripts could interact with the user, control the browser, communicate asynchronously, and alter the document content that was displayed.More recently, however, it has become common in both game development and the creation of desktop applications."></e-accordion-accordionitem>*@
-
-    </e-accordion-accordionitems>
-</ejs-accordion>
-@*</div>
-    </div>*@
-
-
-<!--
-<div id="accordion">
-    @*foreach (AssignmentModel assignmentModel in Model)
-    {
-        @*TODO Meegeven assignment aan partial
-
-    }*@
+    </div>
 </div>
--->
+    -->
+
+    <!--
+    <div id="accordion">
+        @*foreach (AssignmentModel assignmentModel in Model)
+        {
+            @*TODO Meegeven assignment aan partial
+            <partial name="_AssignmentPartial" data="@assignmentModel" />
+        }*@
+    </div>
+    -->
+

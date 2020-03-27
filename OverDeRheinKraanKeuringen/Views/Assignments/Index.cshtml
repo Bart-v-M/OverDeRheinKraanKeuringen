@@ -4,16 +4,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h2>Opdrachten</h2>
+<br />
+<form>
+    <button class="btn-success" asp-action="Create">Nieuwe opdracht</button>
+</form>
+<br />
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.WorkInstruction)
+                Opdrachtnr.
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
@@ -22,16 +23,10 @@
                 @Html.DisplayNameFor(model => model.CableSupplier)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Observations)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Signature)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.OperatingHours)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Reason)
+                @Html.DisplayNameFor(model => model.Signature)
             </th>
             <th></th>
         </tr>

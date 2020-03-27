@@ -59,7 +59,7 @@ namespace OverDeRheinKraanKeuringen
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Assignments}/{action=Index}/{id?}");
             });
         }
     }
