@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,6 +22,8 @@ namespace OverDeRheinKraanKeuringen.Models
         [MaxLength(500)]
         public string Observations { get; set; }
 
+        [NotMapped]
+        public string SignatureDataUrl { get; set; }
         public byte[] Signature { get; set; }
 
         public int OperatingHours { get; set; }
