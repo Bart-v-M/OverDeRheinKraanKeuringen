@@ -31,41 +31,78 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.WorkInstruction)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CableSupplier)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observations)
-            </td>
-            <td>
-                @if (item.Signature != null)
-                {
+    <tbody class="panel panel-default">
+        @foreach (var item in Model)
+        {
+            int i = item.Id;
+
+            <tr class="panel-heading">
+                <td class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordionY" href="#collapse_@i">@i</a>
+                </td>
+                <td class="panel-title">
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td class="panel-title">
+                    @Html.DisplayFor(modelItem => item.CableSupplier)
+                </td>
+                <td class="panel-title">
+                    @Html.DisplayFor(modelItem => item.OperatingHours)
+                </td>
+                <td class="panel-title">
+                    @if(item.Signature != null) { 
                     <div class="Image" style="float:right; ">
-                        <img style="height:auto;width:200px" id="Image" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(item.Signature))" />
+                        <img style="height:auto;width:50px" id="Image" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(item.Signature))" />
                     </div>
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OperatingHours)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reason)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+                    }
+                </td>
+                <td>
+                    <button class="btn-primary" asp-action="Details" asp-route-id="@item.Id">Toon details</button>
+                    <button style="margin-left:10px" class="btn-danger" asp-action="Delete" asp-route-id="@item.Id">Verwijder</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td id="collapse_@i" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        @*await Html.PartialAsync("~/Views/Shared/_AssignmentPartial.cshtml", item)*@
+
+                        <partial name="~/Views/Shared/_AssignmentPartial.cshtml" model=item>
+                            @*<partial name="~/Views/Shared/_AssignmentPartial.cshtml" data="i" />*@
+                    </div>
+                </td>
+            </tr>
+
+
+            @*
+                <!--
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <table>
+                            <tr>
+                                <th>
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordionY" href="#collapse_@i">Opdrachtnr. @i</a>
+                                    </h4>
+                                </th>
+                                <th>
+                                    <h4 style="margin-left:20px">@assignment.Date</h4>
+                                </th>
+                                <th>
+                                    <h4 style="margin-left:20px">Hello There!</h4>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="collapse_@i" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <partial name="~/Views/Shared/_AssignmentPartial.cshtml" />
+                        </div>
+                    </div>
+                </div>
+                -->
+            *@
+
+        }
     </tbody>
 </table>
