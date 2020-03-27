@@ -14,6 +14,7 @@ namespace OverDeRheinKraanKeuringen.Models
         [MaxLength(500)]
         public string WorkInstruction { get; set; }
 
+        [DataType(DataType.Date)] // This DataAnnotation is added to be able to save Date to the database
         public DateTime? Date { get; set; }
 
         [MaxLength(250)]

@@ -63,10 +63,8 @@ namespace OverDeRheinKraanKeuringen.Controllers
 
                 var base64Signature = assignment.SignatureDataUrl.Split(",")[1];
                 assignment.Signature = Convert.FromBase64String(base64Signature);
-
                 //System.IO.File.WriteAllBytes("Signature.png", binarySignature);
                 
-
                 _context.Add(assignment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
