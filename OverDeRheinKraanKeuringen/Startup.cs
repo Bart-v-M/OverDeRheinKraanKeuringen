@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,8 @@ namespace OverDeRheinKraanKeuringen
             });
             services.AddDbContext<ApplicationDbContext>(options => options
                     .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
@@ -54,6 +57,9 @@ namespace OverDeRheinKraanKeuringen
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseMvc(routes =>
             {
