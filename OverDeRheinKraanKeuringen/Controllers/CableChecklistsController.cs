@@ -22,7 +22,7 @@ namespace OverDeRheinKraanKeuringen.Controllers
         // GET: CableChecklists
         public async Task<IActionResult> Index()
         {
-            var x = await _context.CableCheckLists.Include(m => m.DamageTypes).ToListAsync();
+            var x = await _context.CableChecklists.Include(m => m.DamageTypes).ToListAsync();
             return View(x);
         }
 
@@ -34,7 +34,7 @@ namespace OverDeRheinKraanKeuringen.Controllers
                 return NotFound();
             }
 
-            var cableChecklist = await _context.CableCheckLists
+            var cableChecklist = await _context.CableChecklists
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cableChecklist == null)
             {
@@ -55,12 +55,13 @@ namespace OverDeRheinKraanKeuringen.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Breakage_6D,Breakage_30D,DamageOutside,DamageCorrosion,ReducedCableDiameter,PositionMeasuringPoints,DamageTotal")] CableChecklist cableChecklist)
+        public async Task<IActionResult> Create([Bind("Id,Breakage_6D,Breakage_30D,DamageOutside,DamageCorrosion,ReducedCableDiameter,PositionMeasuringPoints,DamageTotal,Damage")] CableChecklist cableChecklist)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(cableChecklist);
                 await _context.SaveChangesAsync();
+                //return RedirectToAction(nameof(AssignmentsController));
                 return RedirectToAction(nameof(Index));
             }
             return View(cableChecklist);
@@ -74,7 +75,7 @@ namespace OverDeRheinKraanKeuringen.Controllers
                 return NotFound();
             }
 
-            var cableChecklist = await _context.CableCheckLists.FindAsync(id);
+            var cableChecklist = await _context.CableChecklists.FindAsync(id);
             if (cableChecklist == null)
             {
                 return NotFound();
@@ -125,7 +126,7 @@ namespace OverDeRheinKraanKeuringen.Controllers
                 return NotFound();
             }
 
-            var cableChecklist = await _context.CableCheckLists
+            var cableChecklist = await _context.CableChecklists
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cableChecklist == null)
             {
@@ -140,8 +141,8 @@ namespace OverDeRheinKraanKeuringen.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cableChecklist = await _context.CableCheckLists.Include(m => m.DamageTypes).Where(a => a.Id == id).FirstOrDefaultAsync();
-            _context.CableCheckLists.Remove(cableChecklist);
+            var cableChecklist = await _context.CableChecklists.Include(m => m.DamageTypes).Where(a => a.Id == id).FirstOrDefaultAsync();
+            _context.CableChecklists.Remove(cableChecklist);
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -149,7 +150,7 @@ namespace OverDeRheinKraanKeuringen.Controllers
 
         private bool CableChecklistExists(int id)
         {
-            return _context.CableCheckLists.Any(e => e.Id == id);
+            return _context.CableChecklists.Any(e => e.Id == id);
         }
     }
 }

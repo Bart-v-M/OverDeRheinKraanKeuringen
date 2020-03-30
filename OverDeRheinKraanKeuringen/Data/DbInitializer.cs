@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Type = OverDeRheinKraanKeuringen.Models.Type;
+using static OverDeRheinKraanKeuringen.Models.Damage;
 
 namespace OverDeRheinKraanKeuringen.Data
 {
@@ -11,58 +11,57 @@ namespace OverDeRheinKraanKeuringen.Data
     {
         public static void Initialize(ApplicationDbContext context)
         {
+            // Delete database on initialization
             context.Database.EnsureDeleted(); 
             
+            // Create database on initialization
             context.Database.EnsureCreated();
 
-            // Look for any students.
+            // Look for any assignments
             if (context.Assignments.Any())
             {
-                return;   // DB has been seeded
+                return; // DB has been seeded
             }
 
-            List<DamageType> damageTypes01 = new List<DamageType>
+         
+            // Add DamageTypes
+            /*
+            List<Damage> damageTypes01 = new List<Damage>
             {
-                new DamageType { Type = Type.H2O_Corrosion },
-                new DamageType { Type = Type.MetalFatigue }
-            };
-
-            
-            foreach(DamageType t in damageTypes01) 
+                Types = { DamageType.H2O_Corrosion, DamageType.AcidCorrosion }
+            };          
+            foreach(Damage t in damageTypes01) 
             {
                 context.DamageTypes.Add(t);
             }
-            
-
             context.SaveChanges();
+            */
+           
 
-            var cableCheckLists = new List<CableChecklist>
+            // Add CableChecklists
+            var cableChecklists = new List<CableChecklist>
             {
-                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes01 },
-                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes01 },
-                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes01 },
-                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes01 }
+                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = { Types = { DamageType.H2O_Corrosion } } },
+                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = { Types = { DamageType.H2O_Corrosion } } },
+                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = { Types = { DamageType.H2O_Corrosion } } },
+                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = { Types = { DamageType.H2O_Corrosion } } }
             };
-
-            foreach (CableChecklist c in cableCheckLists)
+            foreach (CableChecklist c in cableChecklists)
             {
-                context.CableCheckLists.Add(c);
+                context.CableChecklists.Add(c);
             }
-
             context.SaveChanges();
 
+            // Add Assignments
             var assignments = new List<Assignment>
             {
-                new Assignment { Date = DateTime.Now,Observations = "Heel Mooi", CableSupplier = "Apeldoorn", CableChecklists = context.CableCheckLists.ToList()}
+                new Assignment { Date = DateTime.Now, Observations = "Heel Mooi", CableSupplier = "Apeldoorn", CableChecklists = context.CableChecklists.ToList()}
             };
-
             foreach (Assignment s in assignments)
             {
                 context.Assignments.Add(s);
             }
-
             context.SaveChanges();
-
         }
     }
 }

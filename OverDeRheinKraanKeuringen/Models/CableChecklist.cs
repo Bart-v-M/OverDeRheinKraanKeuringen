@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace OverDeRheinKraanKeuringen.Models
 {
@@ -10,28 +13,60 @@ namespace OverDeRheinKraanKeuringen.Models
     {
         public int Id { get; set; }
 
-        public int Breakage_6D { get; set; }
+        [Display(Name = "Aantal zichtbare draadbreuken (lengte 6d)")]
+        [Required(ErrorMessage = "Voer het aantal zichtbare draadbreuken (lengte 6d) in")]
+        [Range(0, short.MaxValue, ErrorMessage = "Alleen positieve getallen zijn mogelijk")]
+        public short Breakage_6D { get; set; }
 
-        public int Breakage_30D { get; set; }
+        [Display(Name = "Aantal zichtbare draadbreuken (lengte 30d)")]
+        [Required(ErrorMessage = "Voer het aantal zichtbare draadbreuken (lengte 30d) in")]
+        [Range(0, short.MaxValue, ErrorMessage = "Alleen positieve getallen zijn mogelijk")]
+        public short Breakage_30D { get; set; }
 
+        [Display(Name = "Afslijping draden buitenzijde (mate van beschadiging)")]
+        [Required(ErrorMessage = "Voer afslijping draden buitenzijde (mate van beschadiging) in")]
         public DamageLevel DamageOutside { get; set; }
 
+        [Display(Name = "Roest en corrosie (mate van beschadiging)")]
+        [Required(ErrorMessage = "Voer roest en corrosie (mate van beschadiging) in")]
         public DamageLevel DamageCorrosion { get; set; }
 
-        public int ReducedCableDiameter { get; set; }
+        [Display(Name = "Verminderde kabeldiameter")]
+        [Required(ErrorMessage = "Voer verminderde kabeldiameter in")]
+        [Range(0, short.MaxValue, ErrorMessage = "Alleen positieve getallen zijn mogelijk")]
+        public short ReducedCableDiameter { get; set; }
 
-        public int PositionMeasuringPoints { get; set; }
+        [Display(Name = "Positie van de meetpunten")]
+        [Required(ErrorMessage = "Voer positie van de meetpunten in")]
+        [Range(0, short.MaxValue, ErrorMessage = "Alleen positieve getallen zijn mogelijk")]
+        public short PositionMeasuringPoints { get; set; }
 
-        public DamageLevel DamageTotal { get; set; }
-  
-        public List<DamageType> DamageTypes { get; set; }
+        [Display(Name = "Totale beoordeling (mate van beschadiging)")]
+        [Required(ErrorMessage = "Voer totale beoordeling (mate van beschadiging) in")]
+        public virtual DamageLevel DamageTotal { get; set; }
+
+
+        [Display(Name = "Typen beschadiging en roestvorming")]
+        //[Required(ErrorMessage = "Voer één of meer typen beschadiging en roestvorming in")]
+        public virtual Damage DamageTypes { get; set; }
     }
 
+    // List with possible damage levels
     public enum DamageLevel
     {
+        [Display(Name = "Geen")]
+        None = 0,
+
+        [Display(Name = "Minimaal")]
         Minor,
+
+        [Display(Name = "Gemiddeld")]
         Average,
+
+        [Display(Name = "Hoog")]
         High,
+
+        [Display(Name = "Zeer hoog")]
         VeryHigh
     }
 }

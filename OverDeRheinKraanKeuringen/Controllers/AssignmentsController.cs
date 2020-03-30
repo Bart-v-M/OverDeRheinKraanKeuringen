@@ -34,8 +34,7 @@ namespace OverDeRheinKraanKeuringen.Controllers
                 return NotFound();
             }
 
-            var assignment = await _context.Assignments
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var assignment = await _context.Assignments.FirstOrDefaultAsync(m => m.Id == id);
             if (assignment == null)
             {
                 return NotFound();
@@ -63,7 +62,6 @@ namespace OverDeRheinKraanKeuringen.Controllers
 
                 var base64Signature = assignment.SignatureDataUrl.Split(",")[1];
                 assignment.Signature = Convert.FromBase64String(base64Signature);
-                //System.IO.File.WriteAllBytes("Signature.png", binarySignature);
                 
                 _context.Add(assignment);
                 await _context.SaveChangesAsync();
