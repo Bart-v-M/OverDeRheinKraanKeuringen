@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OverDeRheinKraanKeuringen.Data;
+using OverDeRheinKraanKeuringen.Models;
 
 namespace OverDeRheinKraanKeuringen
 {
@@ -36,7 +37,7 @@ namespace OverDeRheinKraanKeuringen
             });
             services.AddDbContext<ApplicationDbContext>(options => options
                     .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,11 +30,17 @@ namespace OverDeRheinKraanKeuringen
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<ApplicationDbContext>();
+                //context.Database.Migrate();
+                // requires using Microsoft.Extensions.Configuration;
+                var config = host.Services.GetRequiredService<IConfiguration>();
+                // Set password with the Secret Manager tool.
+                // dotnet user-secrets set SeedUserPW <pw>
 
+                var testUserPw = config["SeedUserPW"];
                 try
                 {
-                    var context = services.GetRequiredService<ApplicationDbContext>();
-                    DbInitializer.Initialize(context);
+                    DbInitializer.Initialize(services, testUserPw).Wait();
                 }
                 catch (Exception ex)
                 {
@@ -42,6 +49,7 @@ namespace OverDeRheinKraanKeuringen
                 }
             }
         }
+        
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)

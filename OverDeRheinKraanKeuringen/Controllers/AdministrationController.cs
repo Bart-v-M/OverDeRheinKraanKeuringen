@@ -17,11 +17,11 @@ namespace OverDeRheinKraanKeuringen.Controllers
     {
 
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<AdministrationController> _logger;
 
         public AdministrationController(RoleManager<IdentityRole> roleManager, 
-                                        UserManager<IdentityUser> userManager,
+                                        UserManager<ApplicationUser> userManager,
                                         ILogger<AdministrationController> logger)
         {
             _roleManager = roleManager;
@@ -31,6 +31,7 @@ namespace OverDeRheinKraanKeuringen.Controllers
 
         public async Task<IActionResult> ListUsers()
         {
+            var user = _userManager.Users;
             return View();
         }
 
