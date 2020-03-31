@@ -47,7 +47,9 @@ namespace OverDeRheinKraanKeuringen.Models
         [Display(Name = "Typen beschadiging en roestvorming")]
         //[Required(ErrorMessage = "Voer één of meer typen beschadiging en roestvorming in")]
 
-        public List<DamageType> DamageTypes { get; set; }
+        //public List<DamageType> DamageTypes { get; set; }
+
+        public List<DamnType> DamageTypes { get; set; }
     }
 
     // List with possible damage levels
@@ -67,6 +69,24 @@ namespace OverDeRheinKraanKeuringen.Models
 
         [Display(Name = "Zeer hoog")]
         VeryHigh
+    }
+
+    public enum DamnType
+    {
+        [Display(Name = "Watercorrosie")]
+        H2O_Corrosion,
+
+        [Display(Name = "Knelling")]
+        Pinched,
+
+        [Display(Name = "Schaafschade")]
+        ScrapingDamage,
+
+        [Display(Name = "Metaalmoeheid")]
+        MetalFatigue,
+
+        [Display(Name = "Zuurcorrosie")]
+        AcidCorrosion
     }
 }
 

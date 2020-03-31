@@ -22,24 +22,37 @@ namespace OverDeRheinKraanKeuringen.Data
                 return; // DB has been seeded
             }
 
-            //
+            /*
+            var damntypes = new List<DamnType>
+            {
+                 new DamnType { H}
+            };
+            foreach (item in DamnType)
+            {
+                context.DamnTypes.Add(t);
+            }
+            context.SaveChanges();
+            */
+           
+            /*
             var damageTypes = new List<DamageType>
             {
-                new DamageType { Type = Models.Type.H2O_Corrosion }
+                new DamageType { Type = { DamageType.DamnType.H2O_Corrosion } }
             };
             foreach (DamageType t in damageTypes)
             {
                 context.DamageTypes.Add(t);
             }
             context.SaveChanges();
+            */
 
             //
             var cableChecklists = new List<CableChecklist>
             {
-                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes  },
-                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes  },
-                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes  },
-                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes  }
+                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = { DamnType.H2O_Corrosion, DamnType.MetalFatigue } },
+                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = { DamnType.H2O_Corrosion, DamnType.MetalFatigue } },
+                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = { DamnType.H2O_Corrosion, DamnType.MetalFatigue } },
+                new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = { DamnType.H2O_Corrosion, DamnType.MetalFatigue } }
             };
             foreach (CableChecklist c in cableChecklists)
             {
