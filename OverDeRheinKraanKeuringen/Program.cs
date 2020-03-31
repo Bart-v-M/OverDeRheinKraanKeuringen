@@ -31,7 +31,8 @@ namespace OverDeRheinKraanKeuringen
             {
                 var services = scope.ServiceProvider;
                 var context = services.GetRequiredService<ApplicationDbContext>();
-                //context.Database.Migrate();
+                context.Database.Migrate();
+
                 // requires using Microsoft.Extensions.Configuration;
                 var config = host.Services.GetRequiredService<IConfiguration>();
                 // Set password with the Secret Manager tool.

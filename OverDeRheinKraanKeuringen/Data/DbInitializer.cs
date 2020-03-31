@@ -38,11 +38,9 @@ namespace OverDeRheinKraanKeuringen.Data
         }
         public static void SeedDB(ApplicationDbContext context)
         {
-            context.Database.EnsureDeleted();
+            //context.Database.EnsureDeleted();
 
-            context.Database.EnsureCreated();
-
-            // Look for any students.
+            //context.Database.EnsureCreated();
 
             if (!context.Assignments.Any())
             {
@@ -61,10 +59,6 @@ namespace OverDeRheinKraanKeuringen.Data
 
                 context.SaveChanges();
 
-
-
-
-
                 var cableCheckLists = new List<CableChecklist>
             {
                 new CableChecklist { DamageCorrosion = DamageLevel.Average, Breakage_30D = 2, DamageTotal = DamageLevel.High, Breakage_6D = 1, DamageOutside = DamageLevel.Minor, ReducedCableDiameter = 3, DamageTypes = damageTypes  },
@@ -80,9 +74,6 @@ namespace OverDeRheinKraanKeuringen.Data
 
                 context.SaveChanges();
 
-
-
-
                 var assignments = new List<Assignment>
             {
                 new Assignment{ Date = DateTime.Now,Observations = "Heel Mooi", CableSupplier = "Apeldoorn", cableChecklists = context.cableCheckLists.ToList()}
@@ -92,9 +83,7 @@ namespace OverDeRheinKraanKeuringen.Data
                     context.Assignments.Add(s);
                 }
                 context.SaveChanges();
-
             }
-
         }
 
         private static async Task<string> EnsureUser(IServiceProvider serviceProvider,
@@ -105,14 +94,8 @@ namespace OverDeRheinKraanKeuringen.Data
             var user = await userManager.FindByNameAsync(UserName);
             if (user == null)
             {
-                user = new ApplicationUser { UserName = UserName, Email = UserName };
+                user = new ApplicationUser { UserName = UserName, Email = UserName, EmailConfirmed = true };
                 var result = await userManager.CreateAsync(user, testUserPw);
-                if (result.Succeeded)
-                {
-                    var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                }
-
             }
             return user.Id;
         }

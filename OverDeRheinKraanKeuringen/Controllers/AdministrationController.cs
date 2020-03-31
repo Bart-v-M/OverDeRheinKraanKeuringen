@@ -12,7 +12,7 @@ using OverDeRheinKraanKeuringen.ViewModels;
 
 namespace OverDeRheinKraanKeuringen.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "UserAdministrators, UserManagers")]
     public class AdministrationController : Controller
     {
 
@@ -29,10 +29,10 @@ namespace OverDeRheinKraanKeuringen.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> ListUsers()
+        public IActionResult ListUsers()
         {
-            var user = _userManager.Users;
-            return View();
+            var users = _userManager.Users;
+            return View(users);
         }
 
         [HttpGet]
