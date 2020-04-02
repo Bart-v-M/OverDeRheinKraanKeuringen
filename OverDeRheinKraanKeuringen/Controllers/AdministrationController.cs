@@ -41,6 +41,36 @@ namespace OverDeRheinKraanKeuringen.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task< IActionResult> CreateRole(CreateRoleViewModel roles)
+        {
+            if (ModelState.IsValid)
+            {
+                IdentityRole identityRole = new IdentityRole
+                {
+                    Name = roles.RoleName
+                };
+
+                if (!await _roleManager.RoleExistsAsync(identityRole.Name))
+                {
+                    IdentityResult IR = await _roleManager.CreateAsync(identityRole);
+                    if (IR.Succeeded)
+                    {
+                        return RedirectToAction("", "");
+                    }
+                    foreach (IdentityError error in IR.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                } else
+                {
+                    ModelState.AddModelError("", "Role already exists!");
+                }
+            }
+        
+            return View(roles);
+        }
+
         [HttpGet]
         public async Task<IActionResult> manageUserClaims(string userId)
         {
