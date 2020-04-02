@@ -47,8 +47,6 @@ namespace OverDeRheinKraanKeuringen.Models
         [Display(Name = "Typen beschadiging en roestvorming")]
         //[Required(ErrorMessage = "Voer één of meer typen beschadiging en roestvorming in")]
 
-        //public List<DamageType> DamageTypes { get; set; }
-
         public virtual List<DamageType> DamageTypes { get; set; }
     }
 
