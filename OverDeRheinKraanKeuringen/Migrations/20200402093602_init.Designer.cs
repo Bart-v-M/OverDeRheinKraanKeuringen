@@ -10,8 +10,8 @@ using OverDeRheinKraanKeuringen.Data;
 namespace OverDeRheinKraanKeuringen.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200327120712_Init04")]
-    partial class Init04
+    [Migration("20200402093602_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,11 +67,11 @@ namespace OverDeRheinKraanKeuringen.Migrations
                     b.Property<int?>("AssignmentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Breakage_30D")
-                        .HasColumnType("int");
+                    b.Property<short>("Breakage_30D")
+                        .HasColumnType("smallint");
 
-                    b.Property<int>("Breakage_6D")
-                        .HasColumnType("int");
+                    b.Property<short>("Breakage_6D")
+                        .HasColumnType("smallint");
 
                     b.Property<int>("DamageCorrosion")
                         .HasColumnType("int");
@@ -82,17 +82,17 @@ namespace OverDeRheinKraanKeuringen.Migrations
                     b.Property<int>("DamageTotal")
                         .HasColumnType("int");
 
-                    b.Property<int>("PositionMeasuringPoints")
-                        .HasColumnType("int");
+                    b.Property<short>("PositionMeasuringPoints")
+                        .HasColumnType("smallint");
 
-                    b.Property<int>("ReducedCableDiameter")
-                        .HasColumnType("int");
+                    b.Property<short>("ReducedCableDiameter")
+                        .HasColumnType("smallint");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AssignmentId");
 
-                    b.ToTable("cableCheckLists");
+                    b.ToTable("CableChecklists");
                 });
 
             modelBuilder.Entity("OverDeRheinKraanKeuringen.Models.DamageType", b =>
@@ -112,7 +112,7 @@ namespace OverDeRheinKraanKeuringen.Migrations
 
                     b.HasIndex("CableChecklistId");
 
-                    b.ToTable("damageTypes");
+                    b.ToTable("DamageTypes");
                 });
 
             modelBuilder.Entity("OverDeRheinKraanKeuringen.Models.CableChecklist", b =>

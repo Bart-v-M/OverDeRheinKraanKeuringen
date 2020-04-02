@@ -2,7 +2,7 @@
 
 namespace OverDeRheinKraanKeuringen.Migrations
 {
-    public partial class Init04 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

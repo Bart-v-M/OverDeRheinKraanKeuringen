@@ -49,7 +49,7 @@ namespace OverDeRheinKraanKeuringen.Models
 
         //public List<DamageType> DamageTypes { get; set; }
 
-        public List<DamnType> DamageTypes { get; set; }
+        public virtual List<DamageType> DamageTypes { get; set; }
     }
 
     // List with possible damage levels

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OverDeRheinKraanKeuringen.Data;
 using OverDeRheinKraanKeuringen.Models;
+using OverDeRheinKraanKeuringen.ViewModels;
 
 namespace OverDeRheinKraanKeuringen.Controllers
 {
@@ -55,15 +56,30 @@ namespace OverDeRheinKraanKeuringen.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Breakage_6D,Breakage_30D,DamageOutside,DamageCorrosion,ReducedCableDiameter,PositionMeasuringPoints,DamageTotal")] CableChecklist cableChecklist)
+        public async Task<IActionResult> Create([Bind("CableChecklist,DamageTypeIds")] CableCheckListViewModel cableChecklistViewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cableChecklist);
+
+                List<DamageType> damageTypes = new List<DamageType>();
+
+                foreach (var item in cableChecklistViewModel.DamageTypeIds)
+                {
+                    DamnType damnType;
+                    Enum.TryParse(item, out damnType);
+                    
+                    DamageType damageType = new DamageType { Type = damnType };
+                    damageTypes.Add(damageType);
+                    
+                }
+
+                cableChecklistViewModel.CableChecklist.DamageTypes = damageTypes;
+
+                _context.Add(cableChecklistViewModel.CableChecklist);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(cableChecklist);
+            return View(cableChecklistViewModel);
         }
 
         // GET: CableChecklists/Edit/5
