@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace OverDeRheinKraanKeuringen.Models
 {
-
     public class DamageType
     {
         public int Id { get; set; }

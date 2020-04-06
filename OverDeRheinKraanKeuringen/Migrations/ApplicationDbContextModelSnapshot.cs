@@ -37,8 +37,8 @@ namespace OverDeRheinKraanKeuringen.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.Property<int>("OperatingHours")
-                        .HasColumnType("int");
+                    b.Property<long>("OperatingHours")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Reason")
                         .HasColumnType("nvarchar(max)");
@@ -111,6 +111,24 @@ namespace OverDeRheinKraanKeuringen.Migrations
                     b.HasIndex("CableChecklistId");
 
                     b.ToTable("DamageTypes");
+                });
+
+            modelBuilder.Entity("OverDeRheinKraanKeuringen.Models.IdTracker", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("LatesCableChecklistId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LatestAssignmentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdTrackers");
                 });
 
             modelBuilder.Entity("OverDeRheinKraanKeuringen.Models.CableChecklist", b =>

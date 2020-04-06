@@ -70,6 +70,10 @@ namespace OverDeRheinKraanKeuringen.Data
                 context.Assignments.Add(s);
             }
             context.SaveChanges();
+
+            //
+            context.IdTrackers.Add(new IdTracker { LatestAssignmentId = 0, LatesCableChecklistId = 0 });
+            context.SaveChanges();
         }
     }
 }

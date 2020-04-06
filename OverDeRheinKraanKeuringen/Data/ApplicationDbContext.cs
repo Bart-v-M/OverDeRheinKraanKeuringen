@@ -19,7 +19,7 @@ namespace OverDeRheinKraanKeuringen.Data
 
         public DbSet<OverDeRheinKraanKeuringen.Models.DamageType> DamageTypes { get; set; }
 
-        //public DbSet<OverDeRheinKraanKeuringen.Models.DamageType> DamnTypes { get; set; }
+        public DbSet<OverDeRheinKraanKeuringen.Models.IdTracker> IdTrackers { get; set; }
 
     }
 }
