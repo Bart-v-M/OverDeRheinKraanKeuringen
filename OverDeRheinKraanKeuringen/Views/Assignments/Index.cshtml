@@ -25,9 +25,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.OperatingHours)
             </th>
+            @*
             <th>
                 @Html.DisplayNameFor(model => model.Signature)
             </th>
+            *@
             <th></th>
         </tr>
     </thead>
@@ -49,6 +51,7 @@
                 <td class="panel-title">
                     @Html.DisplayFor(modelItem => item.OperatingHours)
                 </td>
+                @*
                 <td class="panel-title">
                     @if(item.Signature != null) { 
                     <div class="Image" style="float:left; ">
@@ -56,6 +59,7 @@
                     </div>
                     }
                 </td>
+                *@
                 <td>
                     <form>
                         <button class="btn-primary" asp-action="Details" asp-route-id=@item.Id.ToString()>Toon details</button>

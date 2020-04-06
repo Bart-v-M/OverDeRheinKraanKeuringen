@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Opdracht</h4> 
+    <h4>Opdracht</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -35,12 +35,6 @@
             @Html.DisplayFor(model => model.Observations)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Signature)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Signature)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.OperatingHours)
         </dt>
         <dd>
@@ -52,15 +46,20 @@
         <dd>
             @Html.DisplayFor(model => model.Reason)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Signature)
+        </dt>
+        <dd>
+            @if (Model.Signature != null)
+            {
+                <img style="height:auto; width:100px" id="Image" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.Signature))" />
+            }
+        </dd>
     </dl>
-</div>
-@if (Model.Signature != null)
-{
-    <div class="Image" style="float:right; ">
-        <img style="height:auto;width:200px" id="Image" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.Signature))" />
-    </div>
-}
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Wijzig</a> |
-    <a asp-action="Index">Terug naar lijst</a>
+    <form asp-action="Edit" asp-route-id="@Model.Id">
+        <input type="submit" value="Wijzig" class="btn btn-success" />
+        <br />
+        <br />
+        <a asp-action="Index">Terug naar lijst</a>
+    </form>
 </div>
