@@ -69,15 +69,15 @@ namespace OverDeRheinKraanKeuringen.Controllers
                     Enum.TryParse(item, out damnType);
                     
                     DamageType damageType = new DamageType { Type = damnType };
-                    damageTypes.Add(damageType);
-                    
+                    damageTypes.Add(damageType);                 
                 }
 
                 cableChecklistViewModel.CableChecklist.DamageTypes = damageTypes;
 
                 _context.Add(cableChecklistViewModel.CableChecklist);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Redirect("~/Assignments/Index"); 
+                //return RedirectToAction(nameof(Index));
             }
             return View(cableChecklistViewModel);
         }

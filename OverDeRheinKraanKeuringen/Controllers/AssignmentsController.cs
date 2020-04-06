@@ -34,8 +34,7 @@ namespace OverDeRheinKraanKeuringen.Controllers
                 return NotFound();
             }
 
-            var assignment = await _context.Assignments
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var assignment = await _context.Assignments.FirstOrDefaultAsync(m => m.Id == id);
             if (assignment == null)
             {
                 return NotFound();
