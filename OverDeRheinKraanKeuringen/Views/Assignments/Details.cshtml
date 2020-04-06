@@ -56,10 +56,17 @@
             }
         </dd>
     </dl>
-    <form asp-action="Edit" asp-route-id="@Model.Id">
-        <input type="submit" value="Wijzig" class="btn btn-success" />
-        <br />
-        <br />
-        <a asp-action="Index">Terug naar lijst</a>
-    </form>
+    @*
+        <form asp-action="Edit" asp-route-id="@Model.Id" asp-controller="Assignments">
+            <input type="submit" value="Wijzig" class="btn btn-success" />
+            <br />
+            <br />
+            <a asp-action="Index">Terug naar lijst</a>
+        </form>
+    *@
+
+    <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Wijzig</a>
+    <br />
+    <br />
+    <a asp-controller="Assignments" asp-action="Index">Terug naar lijst</a>
 </div>
