@@ -67,20 +67,45 @@ namespace OverDeRheinKraanKeuringen.Controllers
                 {
                     DamnType damnType;
                     Enum.TryParse(item, out damnType);
-                    
+
                     DamageType damageType = new DamageType { Type = damnType };
-                    damageTypes.Add(damageType);                 
+                    damageTypes.Add(damageType);
                 }
 
                 cableChecklistViewModel.CableChecklist.DamageTypes = damageTypes;
 
                 _context.Add(cableChecklistViewModel.CableChecklist);
                 await _context.SaveChangesAsync();
-                return Redirect("~/Assignments/Index"); 
-                //return RedirectToAction(nameof(Index));
+                return Redirect("~/Assignments/Index");
             }
             return View(cableChecklistViewModel);
         }
+
+        //public async Task<IActionResult> Create([Bind("CableChecklist,DamageTypeIds")] CableCheckListViewModel cableChecklistViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+
+        //        List<DamageType> damageTypes = new List<DamageType>();
+
+        //        foreach (var item in cableChecklistViewModel.DamageTypeIds)
+        //        {
+        //            DamnType damnType;
+        //            Enum.TryParse(item, out damnType);
+
+        //            DamageType damageType = new DamageType { Type = damnType };
+        //            damageTypes.Add(damageType);
+        //        }
+
+        //        cableChecklistViewModel.CableChecklist.DamageTypes = damageTypes;
+
+        //        _context.Add(cableChecklistViewModel.CableChecklist);
+        //        await _context.SaveChangesAsync();
+        //        return Redirect("~/Assignments/Index");
+        //        //return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(cableChecklistViewModel);
+        //}
 
         // GET: CableChecklists/Edit/5
         public async Task<IActionResult> Edit(int? id)
